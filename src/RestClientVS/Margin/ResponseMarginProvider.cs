@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.Utilities;
 namespace RestClientVS
 {
     [Export(typeof(IWpfTextViewMarginProvider))]
-    [Name(nameof(ResponseMarginProvider))]
+    [Name(nameof(RestClientVS.ResponseMarginProvider))]
     [Order(After = PredefinedMarginNames.RightControl)]
     [MarginContainer(PredefinedMarginNames.Right)]
     [ContentType(LanguageFactory.LanguageName)]
@@ -13,6 +13,6 @@ namespace RestClientVS
     public class ResponseMarginProvider : IWpfTextViewMarginProvider
     {
         public IWpfTextViewMargin CreateMargin(IWpfTextViewHost wpfTextViewHost, IWpfTextViewMargin marginContainer) =>
-             wpfTextViewHost.TextView.Properties.GetOrCreateSingletonProperty(() => new ResponseMargin(wpfTextViewHost.TextView));
+             wpfTextViewHost.TextView.Properties.GetOrCreateSingletonProperty(() => new RestClientVS.ResponseMargin2(wpfTextViewHost.TextView));
     }
 }

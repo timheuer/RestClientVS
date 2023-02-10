@@ -9,15 +9,36 @@
              toolkit:Themes.UseVsTheme="True"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBox Name="Control" 
-                 HorizontalAlignment="Stretch"
-                 VerticalAlignment="Stretch"
-                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                 Padding="10"
-                 BorderThickness="0"
-                 IsReadOnly="True"
-                 Focusable="True"
-                 FontFamily="Cascadia Mono"/>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Status: "/>
+                <Label Content="{Binding ResponseStatus}"/>
+                <Label Content="Time: " />
+                <Label Content="{Binding ResponseTime}"/>
+                <Label Content="Size: " />
+                <Label Content="{Binding ResponseSize}" />
+            </StackPanel>
+            <TabControl>
+                <TabItem Header="Body">
+                    <TextBlock x:Name="Control" FontFamily="Cascadia Code" TextWrapping="Wrap" />
+                </TabItem>
+                <TabItem Header="Headers">
+                    <DataGrid ItemsSource="{Binding Headers}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+                <TabItem Header="Cookies">
+                    <DataGrid ItemsSource="{Binding Cookies}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -6,13 +6,13 @@ using RestClientVS.Margin;
 
 namespace RestClientVS
 {
-    public class ResponseMargin : DockPanel, IWpfTextViewMargin
+    public class ResponseMargin2 : DockPanel, IWpfTextViewMargin
     {
         private readonly ITextView _textView;
         private bool _isDisposed;
         private bool _isLoaded;
 
-        public ResponseMargin(ITextView textview)
+        public ResponseMargin2(ITextView textview)
         {
             _textView = textview;
         }

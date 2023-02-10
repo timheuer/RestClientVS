@@ -17,7 +17,7 @@ namespace RestClientVS
     [ProvideLanguageService(typeof(LanguageFactory), LanguageFactory.LanguageName, 0, ShowHotURLs = false, DefaultToNonHotURLs = true)]
     [ProvideLanguageExtension(typeof(LanguageFactory), LanguageFactory.HttpFileExtension)]
     [ProvideLanguageExtension(typeof(LanguageFactory), LanguageFactory.RestFileExtension)]
-    [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.GeneralOptions), LanguageFactory.LanguageName, null, "Advanced", null, new[] { "http", "rest", "timeout" })]
+    [ProvideLanguageEditorOptionPage(typeof(OptionsProvider.GeneralOptions), LanguageFactory.LanguageName, null, "Advanced", null, new[] { "http2", "rest2", "timeout2" })]
 
     [ProvideEditorFactory(typeof(LanguageFactory), 351, CommonPhysicalViewAttributes = (int)__VSPHYSICALVIEWATTRIBUTES.PVA_SupportsPreview, TrustLevel = __VSEDITORTRUSTLEVEL.ETL_AlwaysTrusted)]
     [ProvideEditorExtension(typeof(LanguageFactory), LanguageFactory.HttpFileExtension, 65535, NameResourceID = 351)]

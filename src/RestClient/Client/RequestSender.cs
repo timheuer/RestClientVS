@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Humanizer;
 
 namespace RestClient.Client
 {
@@ -18,12 +23,14 @@ namespace RestClient.Client
             {
                 AllowAutoRedirect = true,
                 UseDefaultCredentials = true,
+                AutomaticDecompression = System.Net.DecompressionMethods.Deflate | System.Net.DecompressionMethods.GZip
             };
 
             using (var client = new HttpClient(handler))
             {
                 client.Timeout = timeOut;
-
+                var sw = new Stopwatch();
+                sw.Start();
                 try
                 {
                     result.Response = await client.SendAsync(requestMessage, cancellationToken);
@@ -36,8 +43,23 @@ namespace RestClient.Client
                 {
                     result.ErrorMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
                 }
+                finally {
+                    sw.Stop();
+                }
+                result.ResponseTime = sw.ElapsedMilliseconds.Milliseconds().Humanize();
             }
 
+            var content = await result.Response?.Content.ReadAsStringAsync();
+            result.ResponseSize = (content.Length + Encoding.UTF8.GetBytes(result.Response.Headers.ToString()).Length + Encoding.UTF8.GetBytes(result.Response.Content.Headers.ToString()).Length).Bytes().Humanize();
+
+            var headers = new List<SimpleHeader>();
+            foreach (var header in result.Response.Headers) {
+                headers.Add(new SimpleHeader(header.Key, header.Value.FirstOrDefault().ToString()));
+            }
+            foreach (var header in result.Response.Content.Headers) {
+                headers.Add(new SimpleHeader(header.Key, header.Value.FirstOrDefault().ToString()));
+            }
+            result.Headers = headers;
             return result;
         }
 

@@ -39,7 +39,7 @@ namespace RestClientVS
                         return;
                     }
 
-                    if (docView.TextView.Properties.TryGetProperty(typeof(ResponseMargin), out ResponseMargin margin))
+                    if (docView.TextView.Properties.TryGetProperty(typeof(RestClientVS.ResponseMargin2), out RestClientVS.ResponseMargin2 margin))
                     {
                         await margin.UpdateReponseAsync(result);
                     }

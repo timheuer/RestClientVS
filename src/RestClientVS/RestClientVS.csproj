@@ -60,7 +60,7 @@
     <Compile Include="Margin\ResponseControl.xaml.cs">
       <DependentUpon>ResponseControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Margin\ResponseMargin.cs" />
+    <Compile Include="Margin\ResponseMargin2.cs" />
     <Compile Include="Margin\ResponseMarginProvider.cs" />
     <Compile Include="Options\General.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,9 +116,15 @@
     <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.445" ExcludeAssets="Runtime">
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Humanizer">
+      <Version>2.14.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.1.4057">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>7.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
